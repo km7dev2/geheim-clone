@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+function _geode_cmake_init() {
+	cmake .. -DGEODE_TARGET_PLATFORM="$1" "$2" "$3" "$4" "$5"
+}
+
+function geodeWin() {
+	HOST_ARCH=x86_64 MSVC_BASE=$SPLAT_DIR/crt WINSDK_BASE=$SPLAT_DIR/sdk WINSDK_VER=10.0.22000 LLVM_VER=15 CLANG_VER=$LLVM_VER \
+	_geode_cmake_init "Win64" -DCMAKE_TOOLCHAIN_FILE="$TOOLCHAIN" -DCMAKE_EXPORT_COMPILE_COMMANDS=1 \
+	-DCMAKE_BUILD_TYPE=RelWithDebInfo -DGEODE_DISABLE_FMT_CONSTEVAL=1
+}
+
+if [[ -d build && ! -f build/build.ninja ]]; then
+	rm -rf build
+fi
+
+if [[ ! -d build ]]; then
+	mkdir build && cd build || exit
+
+	# TODO: non windows arg
+	geodeWin
+
+	cd ..
+fi
+
+ninja -C build

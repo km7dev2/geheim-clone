@@ -1,0 +1,23 @@
+{
+	"geode": "3.1.1",
+	"gd": {
+		"win": "2.206"
+	},
+	"version": "v0.0.2",
+	"id": "tulpenkiste.geheim",
+	"name": "Geheim - Server Switcher",
+	"developer": "Tulpenkiste",
+	"description": "Connect to many GD Private Servers without requiring piracy.",
+	"repository": "https://codeberg.org/tulpenkiste/geheim",
+	"issues": {
+		"info": "Codeberg Repository",
+		"url": "https://codeberg.org/tulpenkiste/geheim/issues"
+	},
+	"tags": ["online", "utility"],
+	"resources": {
+		"sprites": [
+			"resources/*.png"
+		]
+	},
+	"early-load": true
+}
